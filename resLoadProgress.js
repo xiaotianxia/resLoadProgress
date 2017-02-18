@@ -1,19 +1,16 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        //AMD
         define(factory);
     } else if (typeof exports === 'object') {
-        //Node, CommonJS之类的
         module.exports = factory();
     } else {
-        //浏览器全局变量(root 即 window)
-        root.ResLoader = factory(root);
+        root.ResLoadProgress = factory(root);
     }
 }(this, function () {
     var isFunc = function(f) {
         return typeof f === 'function';
     };
-    function ResLoader(config){
+    function ResLoadProgress(config){
         this.option = {
             baseUrl : './', //基准url
             resources : [], //资源路径数组
@@ -36,7 +33,7 @@
         this.start();
     };
 
-    ResLoader.prototype.start = function(){
+    ResLoadProgress.prototype.start = function(){
         var self = this,
             resources = this.resources;
         for(i in resources) {
@@ -51,7 +48,7 @@
         }
     }
 
-    ResLoader.prototype.fixFileUrl = function(index) {
+    ResLoadProgress.prototype.fixFileUrl = function(index) {
         var baseUrl = this.option.baseUrl,
             files = this.resources[index].files;
         for(i in files) {
@@ -65,7 +62,7 @@
         }        
     }
 
-    ResLoader.prototype.onloadFile = function(type, files) {
+    ResLoadProgress.prototype.onloadFile = function(type, files) {
         var self = this;
         this.total += files.length;
         switch(type) {
@@ -99,7 +96,7 @@
         }
     }
 
-    ResLoader.prototype.loaded = function() {
+    ResLoadProgress.prototype.loaded = function() {
         if(isFunc(this.option.onProgress)) {
             this.option.onProgress(++this.currentIndex, this.total);
         }
@@ -111,5 +108,5 @@
         }
     }
 
-    return ResLoader;
+    return ResLoadProgress;
 }));
