@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8" />
+<title>示例页面</title>
+<script src="http://s0.qhimg.com/lib/jquery/183.js"></script>
+<script src="resLoader.js"></script>
+<style>
+.progress{
+	width: 600px;
+	height: 20px;
+	border:3px solid red;
+	position: absolute;
+	left: 0;top: 0;right: 0;bottom: 0;
+	margin:auto;
+}
+.progressbar{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 100%;
+	background-color: green;
+	-webkit-transition:width ease-in 200ms;
+}
+.progresstext{
+	position: absolute;
+	top: 30px;
+	right: 0;
+}
+</style>
+</head>
+<body>
+	<div class="progress">
+		<div class="progressbar"></div>
+		<div class="progresstext">
+			<span class="current"></span>/
+			<span class="total"></span>
+		</div>
+	</div>
+<script>
+var loader = new ResLoader({
+	resources : [
+		{
+			type: 'image',
+			files: [
+				'/t01ed1438874f940dc0.jpg',
+				'/t01b4ff03b72c7dc6c7.jpg',
+				'/t01dd90dfbec92074d0.jpg',
+				'/t01cfec6d87cde457c5.jpg',
+				'/t01943ced462da67833.jpg',
+				'/t01943ced462da67833.jpg',
+				'/t01aa15a7ba7ccb49a7.jpg',
+				'/t010f1e8badf1134376.jpg',
+				'/t01cf37ea915533a032.jpg',
+				'/t0193d8a3963e1803e9.jpg',
+				'/t01cd6a4d4b4bd4457b.jpg'
+			]
+		},
+		{
+			type: 'audio',
+			files: [
+				'http://www.w3school.com.cn/i/horse.ogg',
+				'http://112.35.15.36/m10.music.126.net/20170219002848/f15884f7302513c6aa55ad13f103d1c1/ymusic/873d/5a59/c65b/2dfa7214a7e7b5af5d7742bd7dcc2e99.mp3'
+			]
+		},
+		{
+			type: 'video',
+			files: [
+				'http://bobolive.nosdn.127.net/bobo_1477405695508_29601669.mp4',
+				'http://bobolive.nosdn.127.net/bobo_1477405780957_29869725.mp4',
+				'http://bobolive.nosdn.127.net/aac_prpr_1485153517065_47979990.mp4'
+			]
+		}
+	],
+	baseUrl: 'http://p3.qhimg.com',
+	onStart : function(total){
+		console.log('total:' + total);
+	},
+	onProgress : function(current, total){
+		console.log(current +  '/' + total);
+		var percent = current / total * 100;
+		$('.progressbar').css('width', percent + '%');
+		$('.progresstext .current').text(current);
+		$('.progresstext .total').text(total);
+	},
+	onComplete : function(total){
+		console.log('加载完毕:' + total + '个资源');
+	}
+});
+</script>
+</body>
+</html>
