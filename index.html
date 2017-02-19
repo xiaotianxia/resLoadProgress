@@ -6,22 +6,27 @@
 <script src="http://img1.cache.netease.com/bobo/sp/jquery-1.8.3.min.js"></script>
 <script src="resLoadProgress.js"></script>
 <style>
-.progress{
+.progress {
 	width: 600px;
 	height: 20px;
-	border:3px solid red;
+	border: 3px solid #ccc;
 	position: absolute;
-	left: 0;top: 0;right: 0;bottom: 0;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
 	margin:auto;
 }
-.progressbar{
+.progressbar {
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 0;
 	height: 100%;
-	background-color: green;
+	background-image: -webkit-linear-gradient(left, #27c7c7, #0860ce);
+    background-image: linear-gradient(to right, #27c7c7, #0860ce);
 	-webkit-transition:width ease-in 200ms;
+	transition:width ease-in 200ms;
 }
 .progresstext{
 	position: absolute;
