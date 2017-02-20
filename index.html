@@ -44,6 +44,7 @@
 		</div>
 	</div>
 <script>
+var startTime;
 var loader = new ResLoadProgress({
 	resources : [
 		{
@@ -82,6 +83,7 @@ var loader = new ResLoadProgress({
 	baseUrl: 'http://img1.cache.netease.com/bobo/image/active/meetingyou2016/',
 
 	onStart : function(total) {
+		startTime = new Date().getTime();
 		console.log('total:' + total);
 	},
 
@@ -94,7 +96,9 @@ var loader = new ResLoadProgress({
 	},
 
 	onComplete : function(total) {
+		var duration = (new Date().getTime() - startTime) / 6000;
 		console.log('加载完毕:' + total + '个资源');
+		console.log('消耗时间:' + duration + '秒');
 		$('.progress').hide();
 		$('body').html('<p>done, show page</p>')
 	}
