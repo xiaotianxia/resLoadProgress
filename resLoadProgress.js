@@ -86,7 +86,7 @@
                 break;
             case 'video': 
                 for(i in files) {
-                    var video = new Audio(files[i]);
+                    var video = new Audio(files[i]);//不存在new Video()，用Audio代替
                     video.onloadedmetadata = function() {
                         self.loaded();
                     };
