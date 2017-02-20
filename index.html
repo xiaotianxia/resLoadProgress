@@ -98,9 +98,8 @@ var loader = new ResLoadProgress({
 	onComplete : function(total) {
 		var duration = (new Date().getTime() - startTime) / 6000;
 		console.log('加载完毕:' + total + '个资源');
-		console.log('消耗时间:' + duration + '秒');
 		$('.progress').hide();
-		$('body').html('<p>done, show page</p>')
+		$('body').html('<p>done,消耗时间：' + duration +'秒</p>')
 	}
 });
 </script>
